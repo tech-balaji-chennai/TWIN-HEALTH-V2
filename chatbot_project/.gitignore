@@ -31,9 +31,7 @@ db.sqlite3-journal
 /staticfiles
 /static
 
-# Environment
-.env
-.venv
+
 
 # IDE
 .vscode/
