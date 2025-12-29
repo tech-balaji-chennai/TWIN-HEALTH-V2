@@ -20,13 +20,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security settings
 # NOTE: Using sensible defaults (like 'False' for DEBUG) is good practice.
 SECRET_KEY = os.getenv('SECRET_KEY')
+
+# 1. Update DEBUG and Allowed Hosts
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 # ALLOWED_HOSTS for security. Fetches a comma-separated string from the environment
 # and converts it into a list.
 # IMPORTANT: This line is correct for dynamic host configuration.
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+if DEBUG:
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
+# 2. Add Whitenoise for Static Files (Render requires this for serving static assets like CSS/JS if you had any *served by Django*)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -35,6 +40,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'chat', # Your application
+    'whitenoise.runserver_nostatic',
+]
+
+# 3. Security Headers (Optional but recommended)
+SECURE_HSTS_SECONDS = 31536000
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# 4. CORS Setup (CRITICAL)
+# When deploying the frontend statically (e.g., on GitHub Pages), you MUST specify its full URL here.
+CORS_ALLOW_ALL_ORIGINS = False # Set to False in production
+CORS_ALLOWED_ORIGINS = [
+    # Replace this with the actual URL of your static frontend (e.g., GitHub Pages URL)
+    "https://tech-balaji-chennai.github.io/TWIN-HEALTH-V2/",
+    # Add any other allowed origins (e.g., local test server if needed)
 ]
 
 MIDDLEWARE = [

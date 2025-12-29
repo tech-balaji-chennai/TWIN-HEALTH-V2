@@ -1,12 +1,14 @@
-django>=4.0
-python-dotenv
+Django==5.0.*
+djangorestframework==3.*
+django-cors-headers==4.*
+python-dotenv==1.*
 
 # If using OpenAI
 openai
 
 # If using Gemini
 #langchain-google-genai
-google-genai
+google-genai==0.1.*
 
 # If using other LLM client
 #
@@ -16,3 +18,8 @@ google-genai
 
 # For structured output and data validation (useful with LLMs)
 pydantic
+
+numpy==1.*
+
+# The production HTTP server
+gunicorn
