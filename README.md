@@ -24,8 +24,8 @@
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/ashish1133/Balaji-twin-Health-.git
-    cd Balaji-twin-Health-
+    git clone https://github.com/repository_name.git
+    cd repository_name
     ```
 
 2.  **Set up the Virtual Environment:**
