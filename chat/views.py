@@ -11,13 +11,9 @@ from pydantic import ValidationError  # Used for robust JSON validation
 
 # --- Provider-Specific Imports ---
 # Use conditional imports based on project settings (Gemini is recommended)
-try:
-    from google.genai import genai
-    from google.genai import types
+from google.genai import genai
 
-    GEMINI_CLIENT = genai.Client(api_key=settings.LLM_API_KEY) if settings.LLM_PROVIDER == 'Gemini' else None
-except ImportError:
-    GEMINI_CLIENT = None
+GEMINI_CLIENT = genai.Client(api_key=settings.LLM_API_KEY)
 
 # --- Custom Imports (Assuming these files are correct and available) ---
 from .models import Conversation, ClassificationResult
