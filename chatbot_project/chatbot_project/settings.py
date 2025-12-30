@@ -22,14 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # 1. Update DEBUG and Allowed Hosts
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = os.getenv('DEBUG')
 
 # ALLOWED_HOSTS for security. Fetches a comma-separated string from the environment
 # and converts it into a list.
 # IMPORTANT: This line is correct for dynamic host configuration.
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
-if DEBUG:
-    ALLOWED_HOSTS = ['127.0.0.1', 'localhost','twin-health-healthcare-ai-assistant.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','twin-health-healthcare-ai-assistant.onrender.com']
 
 # 2. Add Whitenoise for Static Files (Render requires this for serving static assets like CSS/JS if you had any *served by Django*)
 INSTALLED_APPS = [
