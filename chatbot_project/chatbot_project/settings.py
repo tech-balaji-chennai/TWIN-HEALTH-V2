@@ -29,7 +29,7 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 # IMPORTANT: This line is correct for dynamic host configuration.
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 if DEBUG:
-    ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost','twin-health-healthcare-ai-assistant.onrender.com']
 
 # 2. Add Whitenoise for Static Files (Render requires this for serving static assets like CSS/JS if you had any *served by Django*)
 INSTALLED_APPS = [
@@ -140,11 +140,7 @@ LLM_PROVIDER = os.getenv('LLM_PROVIDER', 'Gemini') # Default to Gemini if not se
 
 # Get the API key based on the provider chosen above.
 # This makes sure the correct environment variable is read.
-if LLM_PROVIDER == 'OpenAI':
-    # Reads the key named OPENAI_API_KEY from .env
-    LLM_API_KEY = os.getenv('OPENAI_API_KEY')
-    LLM_MODEL = os.getenv('OPENAI_MODEL', 'gpt-4o-mini')
-elif LLM_PROVIDER == 'Gemini':
+if LLM_PROVIDER == 'Gemini':
     # Reads the key named GEMINI_API_KEY from .env
     LLM_API_KEY = os.getenv('GEMINI_API_KEY')
     LLM_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
