@@ -145,6 +145,8 @@ SESSION_SAVE_EVERY_REQUEST = True
 # 💥 CRITICAL CORRECTION: LLM Configuration
 # ----------------------------------------------------
 
+LLM_PROVIDER = 'Gemini'
+
 # Get the API key based on the provider chosen above.
 # This makes sure the correct environment variable is read.
 LLM_API_KEY = os.getenv('GEMINI_API_KEY')
