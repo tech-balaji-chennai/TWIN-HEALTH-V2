@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'chatbot_project.chat.apps.ChatConfig', # Your application
+    'chatbot_project.chat', # Your application
     'whitenoise.runserver_nostatic',
 ]
 
