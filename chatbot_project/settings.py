@@ -145,21 +145,10 @@ SESSION_SAVE_EVERY_REQUEST = True
 # 💥 CRITICAL CORRECTION: LLM Configuration
 # ----------------------------------------------------
 
-# Define the provider
-LLM_PROVIDER = os.getenv('LLM_PROVIDER', 'Gemini') # Default to Gemini if not set
-
 # Get the API key based on the provider chosen above.
 # This makes sure the correct environment variable is read.
-if LLM_PROVIDER == 'Gemini':
-    # Reads the key named GEMINI_API_KEY from .env
-    LLM_API_KEY = os.getenv('GEMINI_API_KEY')
-    LLM_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
-else:
-    # Fallback/Error handling for unsupported provider
-    LLM_API_KEY = None
-    LLM_MODEL = None
-    print(f"WARNING: Unsupported LLM_PROVIDER: {LLM_PROVIDER}")
-
+LLM_API_KEY = os.getenv('GEMINI_API_KEY')
+LLM_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # DEBUGGING (Remember to remove for production!)
 # print(f"DEBUG: LLM_PROVIDER: {LLM_PROVIDER}")
