@@ -12,20 +12,12 @@ from pydantic import ValidationError  # Used for robust JSON validation
 # --- Provider-Specific Imports ---
 # Use conditional imports based on project settings (Gemini is recommended)
 try:
-    from google import genai
+    from google.genai import genai
     from google.genai import types
 
     GEMINI_CLIENT = genai.Client(api_key=settings.LLM_API_KEY) if settings.LLM_PROVIDER == 'Gemini' else None
 except ImportError:
     GEMINI_CLIENT = None
-
-try:
-    from openai import OpenAI
-
-    # Initialize the OpenAI client globally if the provider is OpenAI
-    OPENAI_CLIENT = OpenAI(api_key=settings.LLM_API_KEY) if settings.LLM_PROVIDER == 'OpenAI' else None
-except ImportError:
-    OPENAI_CLIENT = None
 
 # --- Custom Imports (Assuming these files are correct and available) ---
 from .models import Conversation, ClassificationResult
@@ -82,27 +74,6 @@ def get_llm_classification(history_str: str) -> ClassificationOutput:
                 config=config,
             )
             llm_result_json = response.text
-
-
-        elif provider == 'OpenAI' and OPENAI_CLIENT:
-            # --- OPENAI Implementation (Using native Structured Output) ---
-            # Requires GPT-4o models (or latest gpt-4) and uses `response_format`
-
-            messages = [
-                {"role": "system", "content": system_message},
-                {"role": "user", "content": user_message},
-            ]
-
-            response = OPENAI_CLIENT.chat.completions.create(
-                model=model_name,
-                messages=messages,
-                temperature=0.0,
-                # Enforce JSON output format with the new structured output features
-                response_format={"type": "json_object", "json_schema": ClassificationOutput.model_json_schema()}
-            )
-            llm_result_json = response.choices[0].message.content
-
-
         else:
             raise ValueError(f"Unsupported LLM Provider ('{provider}') or missing SDK client.")
 
