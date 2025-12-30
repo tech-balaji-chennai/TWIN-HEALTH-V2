@@ -51,7 +51,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 CORS_ALLOW_ALL_ORIGINS = False # Set to False in production
 CORS_ALLOWED_ORIGINS = [
     # Replace this with the actual URL of your static frontend (e.g., GitHub Pages URL)
-    "https://tech-balaji-chennai.github.io/TWIN-HEALTH-V2/",
+    "https://twin-health-healthcare-ai-assistant.onrender.com",
     # Add any other allowed origins (e.g., local test server if needed)
 ]
 
