@@ -67,8 +67,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'chatbot_project.urls'
 
-STATIC_ROOT = "static/"
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -117,12 +115,14 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_production') 
+
+STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    # Ensures Django looks in 'chat/static' for assets
-    os.path.join(BASE_DIR, 'chat/static'),
+    os.path.join(BASE_DIR, 'chat', 'static'), 
 ]
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
