@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'chatbot_project.chat', # Your application
+    'chat',
     'whitenoise.runserver_nostatic',
 ]
 
@@ -66,6 +66,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'chatbot_project.urls'
+
+STATIC_ROOT = "static/"
 
 TEMPLATES = [
     {
